@@ -1,0 +1,67 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>제목</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<style>
+	#depositLiDiv{margin-top:30px}
+	#depositLiTa{margin-top:30px}
+</style>
+</head>
+<body>
+<%@include file="menu.jspf" %>
+<script>
+	$(function(){
+		$("#search3").on("keyup",function(){
+			//입력한 검색어를 구해와야 한다.
+			var value = $("#search3").val().toUpperCase(); // $(this).val();
+			
+			$("#depositList tr").filter(function(){
+				$(this).toggle($(this).text().toUpperCase().indexOf(value) > -1);
+			});
+		
+		});
+	});
+</script>
+<div id="depositLiDiv">
+	<input class="form-control" type="text" id="search3" placeholder="검색어 입력 하세요."/>
+	<span>* 검색방법: 아이디, 주문번호(예: 20190304A48B), 주문날짜(예: 2019-09-15) </span>
+	<table id="depositLiTa"class="table table-bordered table-striped">
+			<thead>
+			<tr>
+				<td>아이디</td>
+				<td>주문번호</td>
+				<td>결제금액</td>
+				<td>입금확인</td>
+				<td>배송확인</td>
+				<td>주문날짜</td>
+				<td>결제날짜</td>
+				<td>배송날짜</td>
+			</tr>
+			</thead>
+			<tbody id="depositList">
+			<c:forEach var="OrderListVO" items="${list}">
+					<tr>
+						<td>${OrderListVO.m_id }</td>
+						<td>${OrderListVO.o_num }</td>
+						<td>${OrderListVO.o_payment }</td>
+						<td>${OrderListVO.o_deposit }</td>
+						<td>${OrderListVO.o_delivery }</td>
+						<td>${OrderListVO.o_date }</td>
+						<td>${OrderListVO.o_fix }</td>
+						<td>${OrderListVO.o_fix }</td>						
+					</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+</div>
+</body>
+</html>
