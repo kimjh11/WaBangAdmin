@@ -16,7 +16,12 @@ public class CommandDepositLi implements CommandService {
 		//결제목록
 		ListDAO dao = new ListDAO();
 		List<OrderListVO> list = dao.getAllPayment();
-				
+		OrderListVO vo = new OrderListVO();
+		//검색어
+		vo.setSearchWord(req.getParameter("searchWord"));
+						
+						
+		req.setAttribute("vo", vo);			
 		req.setAttribute("list", list);
 				
 		return "depositList.jsp";

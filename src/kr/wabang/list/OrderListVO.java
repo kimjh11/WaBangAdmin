@@ -6,16 +6,22 @@ public class OrderListVO {
 	private String i_code;
 	private int o_count;
 	private String o_selectOpt;
+	private int i_price;
 	private int o_price;
 	private int o_payment;
 	private String o_deposit;
 	private String o_date;
 	private String o_fix;
 	private String o_delivery;
+	private String o_deliverydate;
 	//회원주소
 	private int m_zipCode;
 	private String m_addr;
 	private String m_addrDetail;
+	
+	//검색어
+	private String searchKey=null;
+	private String searchWord=null;
 	
 	public OrderListVO() {}
 
@@ -129,6 +135,38 @@ public class OrderListVO {
 
 	public void setM_addrDetail(String m_addrDetail) {
 		this.m_addrDetail = m_addrDetail;
+	}
+
+	public int getI_price() {
+		return i_price;
+	}
+
+	public void setI_price(int i_price) {
+		this.i_price = i_price;
+	}
+
+	public String getO_deliverydate() {
+		return o_deliverydate;
+	}
+
+	public void setO_deliverydate(String o_deliverydate) {
+		this.o_deliverydate = o_deliverydate;
+	}
+
+	public String getSearchKey() {
+		return searchKey;
+	}
+
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
+	}
+
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
 	}
 	
 }

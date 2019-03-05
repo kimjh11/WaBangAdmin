@@ -11,6 +11,17 @@ public class MemberListVO {
 	private String m_addrDetail;
 	private String m_regdate;
 	
+		//paging 변수
+		private int num=1;//현제페이지
+		private int totalRecord=0;//총레코드수
+		private int totalPage=1;//총페이지수
+		private int onePageRecord=5;//한페이지당 표시할 레코드수
+		private int startPage= 1;//시작페이지
+		private int pageNumCount=5;//한번에 출력할 페이지번호수
+		
+		private String searchKey=null;
+		private String searchWord=null;
+		
 	public MemberListVO(){}
 
 	public String getM_id() {
@@ -83,6 +94,75 @@ public class MemberListVO {
 
 	public void setM_regdate(String m_regdate) {
 		this.m_regdate = m_regdate;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+		if(num%pageNumCount==0) {//5의 배수일때
+			startPage = (num/pageNumCount-1)*pageNumCount+1;
+		}else {//5의 배수 아닐때
+			startPage = (num/pageNumCount)*pageNumCount+1;
+		}
+	}
+
+	public int getTotalRecord() {
+		return totalRecord;
+	}
+
+	public void setTotalRecord(int totalRecord) {
+		this.totalRecord = totalRecord;
+	}
+
+	public int getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
+
+	public int getOnePageRecord() {
+		return onePageRecord;
+	}
+
+	public void setOnePageRecord(int onePageRecord) {
+		this.onePageRecord = onePageRecord;
+	}
+
+	public int getStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+
+	public int getPageNumCount() {
+		return pageNumCount;
+	}
+
+	public void setPageNumCount(int pageNumCount) {
+		this.pageNumCount = pageNumCount;
+	}
+
+	public String getSearchKey() {
+		return searchKey;
+	}
+
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
+	}
+
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
 	}
 	
 	

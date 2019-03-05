@@ -16,13 +16,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <style>
+	h2{margin-top:30px}
 	#memberLiDiv{margin-top:30px}
 	#memberLiTa{margin-top:30px}
 </style>
 </head>
 
 <body>
-<%@include file="menu.jspf" %>
+<%@include file="menu.jspf" %><br/>
 <script>
 	$(function(){
 		$("#search1").on("keyup",function(){
@@ -36,8 +37,9 @@
 		});
 	});
 </script>
+<h2>회원목록</h2>
 <div id="memberLiDiv">
-	<input class="form-control" type="text" id="search1" placeholder="검색어 입력 하세요."/>
+	<input class="form-control" type="text" id="search1" name="searchWord" placeholder="검색어 입력 하세요."/>
 	<span>* 검색방법: 아이디, 이름, 날짜(예: 2019-09)</span>
 	<table id="memberLiTa" class="table table-bordered table-striped">
 		<thead>
@@ -55,7 +57,7 @@
 		<tbody id="memberList">
 			<c:forEach var="MemberListVO" items="${list}">
 				<tr>
-					<td>${MemberListVO.m_id }</td>
+					<td><a href="${ctx }search/orderList.do?searchWord=${MemberListVO.m_id }">${MemberListVO.m_id }</a></td>
 					<td>${MemberListVO.m_name }</td>
 					<td>${MemberListVO.m_tel }</td>
 					<td>${MemberListVO.m_email }</td>
@@ -67,6 +69,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
 </div>
 </body>
 </html>

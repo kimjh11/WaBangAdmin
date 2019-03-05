@@ -16,6 +16,7 @@ public class CommandMemberLi implements CommandService {
 		//회원목록
 		ListDAO dao = new ListDAO();
 		List<MemberListVO> list = dao.getAllMember();
+		MemberListVO vo = new MemberListVO();
 		
 		req.setAttribute("list", list);
 		

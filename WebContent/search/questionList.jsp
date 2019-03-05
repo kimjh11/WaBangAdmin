@@ -12,12 +12,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <style>
+	h2{margin-top:30px}
 	#questionLiDiv{margin-top:30px}
 	#questionLiTa{margin-top:30px}
 </style>
 </head>
 <body>
-<%@include file="menu.jspf" %>
+<%@include file="menu.jspf" %><br/>
 <script>
 	$(function(){
 		$("#search4").on("keyup",function(){
@@ -31,12 +32,13 @@
 		});
 	});
 </script>
+<h2>문의목록</h2>
 <div id="questionLiDiv">
 	<input class="form-control" type="text" id="search4" placeholder="검색어 입력 하세요."/>
 	<span>* 검색방법: 아이디, 제목(예: "안녕하세요"), 문의날짜(예: 2019-09-15) </span>
 	<table id="questionLiTa" class="table table-bordered table-striped">
 			<thead>
-			<tr>
+			<tr style="background:lightblue">
 				<td>아이디</td>
 				<td>제목</td>
 				<td>내용</td>

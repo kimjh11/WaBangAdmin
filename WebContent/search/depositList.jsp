@@ -12,12 +12,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <style>
+	h2{margin-top:30px}
 	#depositLiDiv{margin-top:30px}
 	#depositLiTa{margin-top:30px}
 </style>
 </head>
 <body>
-<%@include file="menu.jspf" %>
+<%@include file="menu.jspf" %><br/>
 <script>
 	$(function(){
 		$("#search3").on("keyup",function(){
@@ -31,12 +32,13 @@
 		});
 	});
 </script>
+<h2>배송목록</h2>
 <div id="depositLiDiv">
-	<input class="form-control" type="text" id="search3" placeholder="검색어 입력 하세요."/>
+	<input class="form-control" type="text" id="search3" placeholder="검색어 입력 하세요." value="${vo.searchWord }"/>
 	<span>* 검색방법: 아이디, 주문번호(예: 20190304A48B), 주문날짜(예: 2019-09-15) </span>
 	<table id="depositLiTa"class="table table-bordered table-striped">
 			<thead>
-			<tr>
+			<tr style="background:lightblue">
 				<td>아이디</td>
 				<td>주문번호</td>
 				<td>결제금액</td>
@@ -57,7 +59,7 @@
 						<td>${OrderListVO.o_delivery }</td>
 						<td>${OrderListVO.o_date }</td>
 						<td>${OrderListVO.o_fix }</td>
-						<td>${OrderListVO.o_fix }</td>						
+						<td>${OrderListVO.o_deliverydate }</td>						
 					</tr>
 			</c:forEach>
 			</tbody>
