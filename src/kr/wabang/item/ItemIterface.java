@@ -1,13 +1,16 @@
 package kr.wabang.item;
 
-public interface ItemIterface {
+import java.util.List;
 
-	//상품등록
-	public int itemWrtie(ItemVO vo);
-	//상품수정
-	public int editItem();
-	//상품삭제
-	public int deleteItem();
-	//글목록
+public interface ItemIterface {
 	
+	public int itemWrtie(ItemVO vo);
+	
+	public int editItem();
+	
+	public int deleteItem();
+	
+	public List<ItemVO> itemList();
+	
+	public List<ItemVO> selectItem(ItemVO vo);
 }

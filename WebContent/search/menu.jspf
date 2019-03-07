@@ -13,6 +13,7 @@
 		<li><a href="${ctx }search/orderList.do">주문정보</a></li>
 		<li><a href="${ctx }search/depositList.do">입금&배송</a></li>
 		<li><a href="${ctx }search/questionList.do">문의목록</a></li>
+		<li><a href="${ctx }item/itemList.do">상품목록</a></li>
 		<li><a href="${ctx }item/itemWrite.do">상품등록</a></li>
 		<li><a href="<%=request.getContextPath()%>/login/logout.do">로그아웃</a>
 	</ul>

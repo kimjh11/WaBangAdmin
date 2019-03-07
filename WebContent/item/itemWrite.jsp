@@ -12,10 +12,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
-<%@ include file="../search/menu.jspf" %>
+<%@ include file="../search/menu.jspf" %><br/>
 <style>
+	*{text-align:left}
+	h2{text-align:center}
 	select{display:none}
 	#start, .on, .on1 {display:inline}
+	#submit{width:200px; height:50px;text-align:center; margin:1% 40%}
 </style>
 <script src="index.js"></script>
 <script>
@@ -169,7 +172,7 @@ var la2 = 0;
 			<label class="col-sm-1">옵션</label>
 			<span id="add1">
 				<input type="hidden" id="optionTotal" name="optionTotal"/>
-				<input type="text" id="option1" name="option1" class="col-sm-3"/>
+				<input type="text" id="option1" name="option1" placeholder="*ex) 퀸사이즈(+100,000)" class="col-sm-3"/>
 			</span>
 				<input type="button" id="optionAdd" value="+" class="bt"><br/>
 			<label class="col-sm-1">색깔</label>
@@ -185,11 +188,9 @@ var la2 = 0;
 				<input type="file" id="thumbnail2" name="thumbnail2" accept='image/*' onchange='openFile(event)'/>
 				<input type="file" id="thumbnail3" name="thumbnail3" accept='image/*' onchange='openFile(event)'/>
 				<div id="textbox" name="textbax" contentEditable="false" style="border:1px solid"></div>
-				<div id="label1"></div>
-			<label class="col-sm-1">이미지</label>
+			<label class="col-sm-1">내용</label>
 				<input type="file" id="image" name="image" accept='image/*' onchange='openFile(event)'/>
-				<div id="board" name="board"contentEditable="true" style="border:1px solid;height:500px;overflow:scroll"></div>
-				<div id="label2"></div>
+				<div id="board" name="board"contentEditable="false" style="border:1px solid"></div>
 		</div>
 		<input type="submit" id="submit" value="등록" />
 	</form>

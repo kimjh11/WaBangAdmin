@@ -17,25 +17,24 @@ public class CommandItemWriteOk implements CommandService {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		// 절대주소
+		// �젅��二쇱냼
 		String path = req.getServletContext().getRealPath("/item/itemImg");
 		System.out.println("path="+path);
-		//업로드 하는 파일의 사이즈
+		//�뾽濡쒕뱶 �븯�뒗 �뙆�씪�쓽 �궗�씠利�
 		int maxSize = 1024*1024*1024;
 		DefaultFileRenamePolicy pol = new DefaultFileRenamePolicy();
 		
 		MultipartRequest mr = new MultipartRequest(req, path, maxSize,"UTF-8",pol);
 		ItemVO vo = new ItemVO();
 		vo.setCode(mr.getParameter("p_Code"));
-		//여기에서 카테고리 넣기
+		//�뿬湲곗뿉�꽌 移댄뀒怨좊━ �꽔湲�
 		vo.setName(mr.getParameter("p_Title"));
 		vo.setPrice(Integer.parseInt(mr.getParameter("p_Price")));
 		vo.setDiscount(Integer.parseInt(mr.getParameter("sale")));
 		vo.setCategory(mr.getParameter("cateTotal"));
 		vo.setOption(mr.getParameter("optionTotal"));
 		vo.setColor(mr.getParameter("colorTotal"));
-		vo.setDetail(mr.getParameter("board"));
-		//파일명
+		//�뙆�씪紐�
 	
 		Enumeration fileList = mr.getFileNames(); 
 		String newFileName[] = new String[5]; 

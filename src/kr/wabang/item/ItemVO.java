@@ -75,7 +75,7 @@ public class ItemVO {
 	}
 	public void setNewFileName(String[] newFileName) {
 		this.newFileName = newFileName;
-		//Á¶°Ç¹®À¸·Î nullÀº ¹ÞÁö ¸¶¶ó¶ó
+		//ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ï¿½ï¿½ nullï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 		if(newFileName[3] !=null) {
 			this.thumbnail += newFileName[3]+"|";
@@ -84,7 +84,7 @@ public class ItemVO {
 		}if(newFileName[1] !=null) {
 			this.thumbnail += newFileName[1];
 		}if(newFileName[0] !=null) {
-			this.detail += newFileName[0];
+			this.detail = newFileName[0];
 		}
 	}
 	public String getThumbnail() {

@@ -1,14 +1,17 @@
 package kr.wabang.item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import kr.wabang.util.DBConnection;
 
 public class ItemDAO extends DBConnection implements ItemIterface {
 
 	@Override
 	public int itemWrtie(ItemVO vo) {
-		// Ã³À½ »óÇ°µî·Ï ÇÏ´Â °÷
+		// ìƒí’ˆë“±ë¡í•˜ëŠ” ê³³
 		int cnt = 0;
-		dbCon();								// | => ÀÖÀ»¼öµµÀÖ°í ¾øÀ»¼öµµÀÖ´À°Í
+		dbCon();						
 		String sql = "insert into item(i_code, i_category, i_name,i_price,";
 				if(vo.getDiscount()<=0) {
 					sql += " i_thumbnail, i_opt, i_color, i_detail, i_regdate)"
@@ -38,12 +41,42 @@ public class ItemDAO extends DBConnection implements ItemIterface {
 			}
 		cnt = pstmt.executeUpdate();
 		}catch(Exception e) {
-			System.out.println("»óÇ°µî·Ï¿¡·¯;;"+e.getMessage());
+			System.out.println("ìƒí’ˆë“±ë¡ì—ëŸ¬;;"+e.getMessage());
 		}finally {
 			dbClose();
 		}
-			
 		return cnt;
+	}
+	public List<ItemVO> itemList() {
+		List<ItemVO> list = new ArrayList<ItemVO>();
+		try {
+			dbCon();
+			String sql = "select i_code, i_name, i_category, i_detail, i_opt, i_color"
+					+ ", i_price, i_discount, i_thumbnail, to_char(i_regdate,'YY-MM-DD HH:MI') from item";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ItemVO vo = new ItemVO();				
+				vo.setCode(rs.getString(1));
+				vo.setName(rs.getString(2));
+				vo.setCategory(rs.getString(3));
+				vo.setDetail(rs.getString(4));
+				vo.setOption(rs.getString(5));
+				vo.setColor(rs.getString(6));
+				vo.setPrice(rs.getInt(7));
+				vo.setDiscount(rs.getInt(8));
+				vo.setThumbnail(rs.getString(9));
+				vo.setRegdate(rs.getString(10));
+				
+				list.add(vo);
+			}
+			
+		}catch(Exception e) {
+			System.out.println("ìƒí’ˆë¦¬ìŠ¤íŠ¸ë½‘ëŠ”ë° ì—ëŸ¬;;"+e.getMessage());
+		}finally {
+			dbClose();
+		}
+		return list;
 	}
 
 	@Override
@@ -56,6 +89,37 @@ public class ItemDAO extends DBConnection implements ItemIterface {
 	public int deleteItem() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	@Override
+	public List<ItemVO> selectItem(ItemVO vo) {
+		// ìƒí’ˆë¦¬ìŠ¤íŠ¸ì—ì„œ ìƒí’ˆ ìì„¸íˆ ë³´ê¸°
+		List<ItemVO> list = new ArrayList<ItemVO>();
+		try {
+			dbCon();
+			String sql = "select i_code, i_name, i_category, i_detail, i_opt, "
+					+ " i_color, i_price, i_discount, i_thumbnail, to_char(i_regdate,'YY-MM-DD HH:MI') from item where i_code=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getCode());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				vo.setCode(rs.getString(1));
+				vo.setName(rs.getString(2));
+				vo.setCategory(rs.getString(3));
+				vo.setDetail(rs.getString(4));
+				vo.setOption(rs.getString(5));
+				vo.setColor(rs.getString(6));
+				vo.setPrice(rs.getInt(7));
+				vo.setDiscount(rs.getInt(8));
+				vo.setThumbnail(rs.getString(9));
+				vo.setRegdate(rs.getString(10));	
+				list.add(vo);
+			}
+		}catch(Exception e) {
+			System.out.println("ì•„ì´í…œ ì…€ë ‰íŠ¸ ì‹¤íŒ¨;;"+e.getMessage());
+		}finally {
+			dbClose();
+		}
+		return list;
 	}
 
 }
