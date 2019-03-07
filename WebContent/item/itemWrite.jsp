@@ -12,6 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+<%@ include file="../search/menu.jspf" %>
 <style>
 	select{display:none}
 	#start, .on, .on1 {display:inline}
@@ -143,7 +144,7 @@ var la2 = 0;
 </script>
 </head>
 <body>
-<h2>상품등록</h2>
+<div><h2>상품등록</h2></div>
 <div>  <!--전체를 담는 블럭 -->
 	<form method = "post" action="<%=request.getContextPath()%>/item/itemWriteOk.do" enctype="multipart/form-data" class="form-horizontal"> 
 		<div> <!-- 상품 코드  -->
