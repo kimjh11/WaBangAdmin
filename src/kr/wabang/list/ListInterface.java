@@ -13,4 +13,7 @@ public interface ListInterface {
 	//문의목록
 	public List<QuestionListVO> getAllQuestion();
 	
+	//배송완료
+	public int updateDelivery(String deliveryOk,String i_code,String o_num,String m_id);
+	
 }

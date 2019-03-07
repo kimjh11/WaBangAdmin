@@ -56,9 +56,19 @@
 						<td>${OrderListVO.m_id }</td>
 						<td>${OrderListVO.o_num }</td>
 						<td>${OrderListVO.i_code }</td>
-						<td>${OrderListVO.o_payment }</td>
-						<td>${OrderListVO.o_deposit }</td>
-						<td>${OrderListVO.o_delivery }</td>
+						<td>${OrderListVO.o_price }</td>
+						<c:if test="${OrderListVO.o_deposit=='미결제' }">
+							<td style="color:red">${OrderListVO.o_deposit }</td>
+						</c:if>
+						<c:if test="${OrderListVO.o_deposit=='결제완료' }">
+							<td style="color:blue">${OrderListVO.o_deposit }</td>
+						</c:if>
+						<c:if test="${OrderListVO.o_delivery=='배송준비중' }">
+							<td><a style="color:red" href="${ctx }search/deliveryOk.do?i_code=${OrderListVO.i_code }&m_id=${OrderListVO.m_id }&o_num=${OrderListVO.o_num }">${OrderListVO.o_delivery }</a></td>
+						</c:if>
+						<c:if test="${OrderListVO.o_delivery=='배송완료' }">
+							<td><a style="color:blue" href="${ctx }search/deliveryOk.do?i_code=${OrderListVO.i_code }&m_id=${OrderListVO.m_id }&o_num=${OrderListVO.o_num }">${OrderListVO.o_delivery }</a></td>
+						</c:if>
 						<td>${OrderListVO.o_date }</td>
 						<td>${OrderListVO.o_fix }</td>
 						<td>${OrderListVO.o_deliverydate }</td>						

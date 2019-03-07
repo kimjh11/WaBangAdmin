@@ -85,9 +85,10 @@ public class ListDAO extends DBConnection implements ListInterface {
 		try {
 			dbCon();
 			String sql = " select o.m_id, o.o_num, o.i_code , "
-					+ " o.o_payment, o_deposit, o_delivery, "
+					+ " o.o_price, o_deposit, o_delivery, "
 					+ " to_char(o.o_date,'YYYY-MM-DD'),"
-					+ " to_char(o.o_fix, 'YYYY-MM-DD') "
+					+ " to_char(o.o_fix, 'YYYY-MM-DD'),"
+					+ " to_char(o.o_deliverydate, 'YYYY-MM-DD') "
 					+ " from member m join orderList o "
 					+ " on m.m_id=o.m_id "
 					+ " order by o.o_date desc ";
@@ -98,11 +99,12 @@ public class ListDAO extends DBConnection implements ListInterface {
 				vo.setM_id(rs.getString(1));
 				vo.setO_num(rs.getString(2));
 				vo.setI_code(rs.getString(3));
-				vo.setO_payment(rs.getInt(4));
+				vo.setO_price(rs.getInt(4));
 				vo.setO_deposit(rs.getString(5));
 				vo.setO_delivery(rs.getString(6));
 				vo.setO_date(rs.getString(7));
 				vo.setO_fix(rs.getString(8));
+				vo.setO_deliverydate(rs.getString(9));
 				list.add(vo);
 			}
 			
@@ -143,5 +145,30 @@ public class ListDAO extends DBConnection implements ListInterface {
 		return list;
 	}
 
+	@Override
+	public int updateDelivery(String deliveryOk,String i_code, String o_num, String m_id) {
+		int cnt = 0;
+		try {
+		dbCon();
+		String sql = " update orderList set o_delivery = ?, o_deliverydate = sysdate "
+				+ " where m_id=? and i_code=? and o_num=? ";
 
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, deliveryOk);
+		pstmt.setString(2, m_id);
+		pstmt.setString(3, i_code);
+		pstmt.setString(4, o_num);
+		pstmt.executeUpdate();
+		cnt = pstmt.executeUpdate();
+		
+		}catch(Exception e){
+			System.out.println("결제완료 하기 에러..."+e.getMessage());
+		}finally {
+			dbClose();
+		}
+		return cnt;
+	}
 }
+
+
+

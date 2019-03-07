@@ -50,7 +50,6 @@
 				<td>선택옵션</td>
 				<td>상품가격</td>
 				<td>옵션적용가격</td>
-				<td>결제금액</td>
 				<td>우편번호</td>
 				<td>주소</td>
 				<td>주문날짜</td>
@@ -68,7 +67,6 @@
 						</td>
 						<td>${OrderListVO.i_price }</td>
 						<td>${OrderListVO.o_price }</td>
-						<td>${OrderListVO.o_payment }</td>
 						<td>${OrderListVO.m_zipCode }</td>
 						<td>
 							${OrderListVO.m_addr }<br/>
