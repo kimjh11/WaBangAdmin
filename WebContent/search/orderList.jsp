@@ -50,7 +50,6 @@
 				<td>선택옵션</td>
 				<td>상품가격</td>
 				<td>옵션적용가격</td>
-				<td>결제금액</td>
 				<td>우편번호</td>
 				<td>주소</td>
 				<td>주문날짜</td>
@@ -61,14 +60,13 @@
 					<tr>
 						<td>${OrderListVO.m_id }</td>
 						<td><a href="${ctx }search/depositList.do?searchWord=${OrderListVO.o_num }">${OrderListVO.o_num }</a></td>
-						<td>${OrderListVO.i_code }</td>
+						<td><a href="${ctx }search/depositList.do?searchWord=${OrderListVO.i_code }">${OrderListVO.i_code }</a></td>
 						<td>
 							옵션: ${OrderListVO.o_selectOpt }<br/>
 							수량: ${OrderListVO.o_count }
 						</td>
 						<td>${OrderListVO.i_price }</td>
 						<td>${OrderListVO.o_price }</td>
-						<td>${OrderListVO.o_payment }</td>
 						<td>${OrderListVO.m_zipCode }</td>
 						<td>
 							${OrderListVO.m_addr }<br/>
