@@ -84,7 +84,7 @@ public class ListDAO extends DBConnection implements ListInterface {
 		List<OrderListVO> list = new ArrayList<OrderListVO>();
 		try {
 			dbCon();
-			String sql = " select o.m_id, o.o_num, "
+			String sql = " select o.m_id, o.o_num, o.i_code , "
 					+ " o.o_payment, o_deposit, o_delivery, "
 					+ " to_char(o.o_date,'YYYY-MM-DD'),"
 					+ " to_char(o.o_fix, 'YYYY-MM-DD') "
@@ -97,11 +97,12 @@ public class ListDAO extends DBConnection implements ListInterface {
 				OrderListVO vo = new OrderListVO();
 				vo.setM_id(rs.getString(1));
 				vo.setO_num(rs.getString(2));
-				vo.setO_payment(rs.getInt(3));
-				vo.setO_deposit(rs.getString(4));
-				vo.setO_delivery(rs.getString(5));
-				vo.setO_date(rs.getString(6));
-				vo.setO_fix(rs.getString(7));
+				vo.setI_code(rs.getString(3));
+				vo.setO_payment(rs.getInt(4));
+				vo.setO_deposit(rs.getString(5));
+				vo.setO_delivery(rs.getString(6));
+				vo.setO_date(rs.getString(7));
+				vo.setO_fix(rs.getString(8));
 				list.add(vo);
 			}
 			

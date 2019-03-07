@@ -41,6 +41,7 @@
 			<tr style="background:lightblue">
 				<td>아이디</td>
 				<td>주문번호</td>
+				<td>상품코드</td>
 				<td>결제금액</td>
 				<td>입금확인</td>
 				<td>배송확인</td>
@@ -54,6 +55,7 @@
 					<tr>
 						<td>${OrderListVO.m_id }</td>
 						<td>${OrderListVO.o_num }</td>
+						<td>${OrderListVO.i_code }</td>
 						<td>${OrderListVO.o_payment }</td>
 						<td>${OrderListVO.o_deposit }</td>
 						<td>${OrderListVO.o_delivery }</td>
