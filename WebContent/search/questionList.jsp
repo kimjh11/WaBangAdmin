@@ -49,14 +49,23 @@
 			</thead>
 			<tbody id="questionList">
 			<c:forEach var="QuestionListVO" items="${list}">
-					<tr>
-						<td>${QuestionListVO.m_id }</td>
-						<td>${QuestionListVO.q_title }</td>					
-						<td>${QuestionListVO.q_content }</td>
-						<td></td>
-						<td>${QuestionListVO.q_regdate }</td>
-						<td></td>						
-					</tr>
+				<tr>
+					<td>${QuestionListVO.m_id }</td>
+					<td>${QuestionListVO.q_title }</td>					
+					<td>${QuestionListVO.q_content }</td>
+					
+					<!-- 답변 날짜, 질문 번호 -->
+					<c:if test="${(QuestionListVO.a_regdate == null || QuestionListVO.a_regdate == ' ')}">
+						<td><a href="<%=request.getContextPath()%>/answer/answerWriteForm.do?q_num=${QuestionListVO.q_num}"><button>답변하기</button></a></td>
+					</c:if>
+					<c:if test="${(QuestionListVO.a_regdate != null && QuestionListVO.a_regdate != ' ')}">
+						<td><a href="<%=request.getContextPath()%>/answer/answerView.do?q_num=${QuestionListVO.q_num}"><label>답변완료</label></a></td>
+					</c:if>	
+					
+					<td>${QuestionListVO.q_regdate }</td>
+					<td>${QuestionListVO.a_regdate }</td>
+					
+				</tr>
 			</c:forEach>
 			</tbody>
 		</table>

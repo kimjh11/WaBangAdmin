@@ -3,7 +3,7 @@ package kr.wabang.list;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import kr.wabang.answer.AnswerVO;
 import kr.wabang.util.DBConnection;
 
 public class ListDAO extends DBConnection implements ListInterface {
@@ -121,19 +121,29 @@ public class ListDAO extends DBConnection implements ListInterface {
 		List<QuestionListVO> list = new ArrayList<QuestionListVO>();
 		try {
 			dbCon();
-			String sql = " select q_num, q.m_id, q_title, q_content, to_char(q_regdate,'YYYY-MM-DD') "
-					+ " from question q join member m "
-					+ " on m.m_id=q.m_id "
-					+ " order by q_regdate desc ";
+			String sql = " select q.q_num, q.m_id, q_title, q_content, to_char(q.q_regdate,'YYYY-MM-DD'), a.q_num, to_char(a.a_regdate,'YYYY-MM-DD') " 
+					+" from question q join member m "
+					+" on m.m_id = q.m_id "
+					+" full outer join answer a "
+					+" on a.q_num = q.q_num " 
+					+" order by q.q_regdate desc ";
+			
+			System.out.println(sql);
+			
 			pstmt = con.prepareStatement(sql);
+			
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
 				QuestionListVO vo = new QuestionListVO();
-				vo.setQ_num(rs.getInt(1));
+ 				vo.setQ_num(rs.getInt(1));
 				vo.setM_id(rs.getString(2));
 				vo.setQ_title(rs.getString(3));
 				vo.setQ_content(rs.getString(4));
 				vo.setQ_regdate(rs.getString(5));
+				vo.setA_num(rs.getInt(6));
+				vo.setA_regdate(rs.getString(7));
+				
 				list.add(vo);
 			}
 			
@@ -167,7 +177,7 @@ public class ListDAO extends DBConnection implements ListInterface {
 			dbClose();
 		}
 		return cnt;
-	}
+	}	
 }
 
 
