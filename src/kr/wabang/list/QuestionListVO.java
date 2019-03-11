@@ -7,6 +7,10 @@ public class QuestionListVO {
 	private String q_content;
 	private String q_regdate;
 	
+	//답변 관련 변수
+	private int a_num;
+	private String a_regdate;
+	
 	public QuestionListVO() {}
 
 	public int getQ_num() {
@@ -48,5 +52,23 @@ public class QuestionListVO {
 	public void setQ_regdate(String q_regdate) {
 		this.q_regdate = q_regdate;
 	}
+
+	public String getA_regdate() {
+		return a_regdate;
+	}
+
+	public void setA_regdate(String a_regdate) {
+		this.a_regdate = a_regdate;
+	}
+
+	public int getA_num() {
+		return a_num;
+	}
+
+	public void setA_num(int a_num) {
+		this.a_num = a_num;
+	}
+	
+	
 	
 }
