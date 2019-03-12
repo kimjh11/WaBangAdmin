@@ -65,8 +65,8 @@
 							옵션: ${OrderListVO.o_selectOpt }<br/>
 							수량: ${OrderListVO.o_count }
 						</td>
-						<td>${OrderListVO.i_price }</td>
 						<td>${OrderListVO.o_price }</td>
+						<td>${OrderListVO.o_payment }</td>
 						<td>${OrderListVO.m_zipCode }</td>
 						<td>
 							${OrderListVO.m_addr }<br/>

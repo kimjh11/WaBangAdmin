@@ -46,7 +46,7 @@ public class ListDAO extends DBConnection implements ListInterface {
 		try {
 			dbCon();
 			String sql = " select o.m_id, o.o_num, o.i_code, o.o_selectOpt, o.o_count, "
-					+ " o.i_price, o.o_price, o.o_payment, m.m_zipCode, m.m_addr, m.m_addrDetail, "
+					+ " o.o_price, o.o_payment, m.m_zipCode, m.m_addr, m.m_addrDetail, "
 					+ " to_char(o.o_date,'YYYY-MM-DD') "
 					+ " from member m join orderList o "
 					+ " on m.m_id=o.m_id "
@@ -60,13 +60,12 @@ public class ListDAO extends DBConnection implements ListInterface {
 				vo.setI_code(rs.getString(3));
 				vo.setO_selectOpt(rs.getString(4));
 				vo.setO_count(rs.getInt(5));
-				vo.setI_price(rs.getInt(6));
-				vo.setO_price(rs.getInt(7));
-				vo.setO_payment(rs.getInt(8));
-				vo.setM_zipCode(rs.getInt(9));
-				vo.setM_addr(rs.getString(10));
-				vo.setM_addrDetail(rs.getString(11));
-				vo.setO_date(rs.getString(12));
+				vo.setO_price(rs.getInt(6));
+				vo.setO_payment(rs.getInt(7));
+				vo.setM_zipCode(rs.getInt(8));
+				vo.setM_addr(rs.getString(9));
+				vo.setM_addrDetail(rs.getString(10));
+				vo.setO_date(rs.getString(11));
 				
 								
 				list.add(vo);
@@ -85,7 +84,7 @@ public class ListDAO extends DBConnection implements ListInterface {
 		try {
 			dbCon();
 			String sql = " select o.m_id, o.o_num, o.i_code , "
-					+ " o.o_price, o_deposit, o_delivery, "
+					+ " o.o_payment, o_deposit, o_delivery, "
 					+ " to_char(o.o_date,'YYYY-MM-DD'),"
 					+ " to_char(o.o_fix, 'YYYY-MM-DD'),"
 					+ " to_char(o.o_deliverydate, 'YYYY-MM-DD') "
@@ -99,7 +98,7 @@ public class ListDAO extends DBConnection implements ListInterface {
 				vo.setM_id(rs.getString(1));
 				vo.setO_num(rs.getString(2));
 				vo.setI_code(rs.getString(3));
-				vo.setO_price(rs.getInt(4));
+				vo.setO_payment(rs.getInt(4));
 				vo.setO_deposit(rs.getString(5));
 				vo.setO_delivery(rs.getString(6));
 				vo.setO_date(rs.getString(7));

@@ -56,7 +56,7 @@
 						<td>${OrderListVO.m_id }</td>
 						<td>${OrderListVO.o_num }</td>
 						<td>${OrderListVO.i_code }</td>
-						<td>${OrderListVO.o_price }</td>
+						<td>${OrderListVO.o_payment }</td>
 						<c:if test="${OrderListVO.o_deposit=='미결제' }">
 							<td style="color:red">${OrderListVO.o_deposit }</td>
 						</c:if>
