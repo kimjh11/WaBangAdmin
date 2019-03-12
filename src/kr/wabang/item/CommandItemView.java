@@ -1,26 +1,27 @@
-package kr.wabang.list;
+package kr.wabang.item;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.wabang.answer.AnswerVO;
 import kr.wabang.controller.CommandService;
 
-public class CommandQuestionLi implements CommandService {
+public class CommandItemView implements CommandService {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//Áú¹®¸ñ·Ï
-		ListDAO dao = new ListDAO();
-		List<QuestionListVO> list = dao.getAllQuestion();
+		//ì½”ë“œë²ˆí˜¸ë¡œ ìƒí’ˆ ì„ íƒí•˜ê¸°
+		ItemVO vo = new ItemVO();
+		vo.setCode(req.getParameter("code"));
 		
-		req.setAttribute("list", list);
+		ItemDAO dao = new ItemDAO();
+		dao.selectItem(vo);
 		
-		return "questionList.jsp";
+		req.setAttribute("vo", vo);
+		
+		return "itemView.jsp";
 	}
 
 }
