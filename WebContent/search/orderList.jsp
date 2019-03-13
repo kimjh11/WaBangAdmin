@@ -63,6 +63,7 @@
 						<td><a href="${ctx }search/depositList.do?searchWord=${OrderListVO.i_code }">${OrderListVO.i_code }</a></td>
 						<td>
 							옵션: ${OrderListVO.o_selectOpt }<br/>
+							색상: ${OrderListVO.o_selectColor }<br/>
 							수량: ${OrderListVO.o_count }
 						</td>
 						<td>${OrderListVO.o_price }</td>

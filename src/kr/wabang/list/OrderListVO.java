@@ -6,6 +6,7 @@ public class OrderListVO {
 	private String i_code;
 	private int o_count;
 	private String o_selectOpt;
+	private String o_selectColor;
 	private int i_price;
 	private int o_price;
 	private int o_payment;
@@ -14,12 +15,12 @@ public class OrderListVO {
 	private String o_fix;
 	private String o_delivery;
 	private String o_deliverydate;
-	//È¸¿øÁÖ¼Ò
+	//È¸ï¿½ï¿½ï¿½Ö¼ï¿½
 	private int m_zipCode;
 	private String m_addr;
 	private String m_addrDetail;
 	
-	//°Ë»ö¾î
+	//ï¿½Ë»ï¿½ï¿½ï¿½
 	private String searchKey=null;
 	private String searchWord=null;
 	
@@ -167,6 +168,14 @@ public class OrderListVO {
 
 	public void setSearchWord(String searchWord) {
 		this.searchWord = searchWord;
+	}
+
+	public String getO_selectColor() {
+		return o_selectColor;
+	}
+
+	public void setO_selectColor(String o_selectColor) {
+		this.o_selectColor = o_selectColor;
 	}
 	
 }

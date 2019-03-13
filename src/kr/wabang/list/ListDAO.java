@@ -8,7 +8,7 @@ import kr.wabang.util.DBConnection;
 
 public class ListDAO extends DBConnection implements ListInterface {
 	
-	//È¸¿ø¸ñ·Ï
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<MemberListVO> getAllMember() {
 		List<MemberListVO> list = new ArrayList<MemberListVO>();
 		try {
@@ -33,19 +33,19 @@ public class ListDAO extends DBConnection implements ListInterface {
 			}
 			
 		}catch(Exception e){
-			System.out.println("È¸¿ø ¸ñ·Ï ºÒ·¯¿À±â ¿¡·¯..."+e.getMessage());
+			System.out.println("È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..."+e.getMessage());
 		}finally {
 			dbClose();
 		}
 		return list;
 	}
 
-	//ÁÖ¹®¸ñ·Ï
+	//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½
 	public List<OrderListVO> getAllOrder() {
 		List<OrderListVO> list = new ArrayList<OrderListVO>();
 		try {
 			dbCon();
-			String sql = " select o.m_id, o.o_num, o.i_code, o.o_selectOpt, o.o_count, "
+			String sql = " select o.m_id, o.o_num, o.i_code, o.o_selectOpt, o.o_count,o.o_selectColor , "
 					+ " o.o_price, o.o_payment, m.m_zipCode, m.m_addr, m.m_addrDetail, "
 					+ " to_char(o.o_date,'YYYY-MM-DD') "
 					+ " from member m join orderList o "
@@ -60,25 +60,26 @@ public class ListDAO extends DBConnection implements ListInterface {
 				vo.setI_code(rs.getString(3));
 				vo.setO_selectOpt(rs.getString(4));
 				vo.setO_count(rs.getInt(5));
-				vo.setO_price(rs.getInt(6));
-				vo.setO_payment(rs.getInt(7));
-				vo.setM_zipCode(rs.getInt(8));
-				vo.setM_addr(rs.getString(9));
-				vo.setM_addrDetail(rs.getString(10));
-				vo.setO_date(rs.getString(11));
+				vo.setO_selectColor(rs.getString(6));
+				vo.setO_price(rs.getInt(7));
+				vo.setO_payment(rs.getInt(8));
+				vo.setM_zipCode(rs.getInt(9));
+				vo.setM_addr(rs.getString(10));
+				vo.setM_addrDetail(rs.getString(11));
+				vo.setO_date(rs.getString(12));
 				
 								
 				list.add(vo);
 			}
 			
 		}catch(Exception e){
-			System.out.println("ÁÖ¹® ¸ñ·Ï ºÒ·¯¿À±â ¿¡·¯..."+e.getMessage());
+			System.out.println("ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..."+e.getMessage());
 		}finally {
 			dbClose();
 		}
 		return list;
 	}
-	//°áÁ¦¸ñ·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<OrderListVO> getAllPayment() {
 		List<OrderListVO> list = new ArrayList<OrderListVO>();
 		try {
@@ -108,14 +109,14 @@ public class ListDAO extends DBConnection implements ListInterface {
 			}
 			
 		}catch(Exception e){
-			System.out.println("°áÁ¦¸ñ·Ï ºÒ·¯¿À±â ¿¡·¯..."+e.getMessage());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..."+e.getMessage());
 		}finally {
 			dbClose();
 		}
 		return list;
 	}
 	
-	//Áú¹®¸ñ·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<QuestionListVO> getAllQuestion() {
 		List<QuestionListVO> list = new ArrayList<QuestionListVO>();
 		try {
@@ -147,7 +148,7 @@ public class ListDAO extends DBConnection implements ListInterface {
 			}
 			
 		}catch(Exception e){
-			System.out.println("Áú¹® ¸ñ·Ï ºÒ·¯¿À±â ¿¡·¯..."+e.getMessage());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..."+e.getMessage());
 		}finally {
 			dbClose();
 		}
@@ -171,7 +172,7 @@ public class ListDAO extends DBConnection implements ListInterface {
 		cnt = pstmt.executeUpdate();
 		
 		}catch(Exception e){
-			System.out.println("°áÁ¦¿Ï·á ÇÏ±â ¿¡·¯..."+e.getMessage());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½..."+e.getMessage());
 		}finally {
 			dbClose();
 		}
