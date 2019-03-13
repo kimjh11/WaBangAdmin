@@ -6,11 +6,13 @@ public interface ItemIterface {
 	
 	public int itemWrtie(ItemVO vo);
 	
-	public int editItem();
+	public int editItem(ItemVO vo , String path);
 	
-	public int deleteItem();
+	public int deleteItem(String code, String path);
 	
 	public List<ItemVO> itemList();
 	
 	public List<ItemVO> selectItem(ItemVO vo);
+	
+	public String[] getFileList(String code);
 }

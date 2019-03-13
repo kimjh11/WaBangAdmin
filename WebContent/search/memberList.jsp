@@ -57,7 +57,7 @@
 		<tbody id="memberList">
 			<c:forEach var="MemberListVO" items="${list}">
 				<tr>
-					<td><a href="${ctx }search/orderList.do?searchWord=${MemberListVO.m_id }">${MemberListVO.m_id }</a></td>
+					<td ><a href="${ctx }search/orderList.do?searchWord=${MemberListVO.m_id }">${MemberListVO.m_id }</a></td>
 					<td>${MemberListVO.m_name }</td>
 					<td>${MemberListVO.m_tel }</td>
 					<td>${MemberListVO.m_email }</td>

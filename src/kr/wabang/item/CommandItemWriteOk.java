@@ -7,6 +7,7 @@ import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -18,6 +19,7 @@ public class CommandItemWriteOk implements CommandService {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// �젅��二쇱냼
+		
 		String path = req.getServletContext().getRealPath("/item/itemImg");
 		System.out.println("path="+path);
 		//�뾽濡쒕뱶 �븯�뒗 �뙆�씪�쓽 �궗�씠利�
@@ -56,7 +58,6 @@ public class CommandItemWriteOk implements CommandService {
 			}
 		}
 		req.setAttribute("cnt", cnt);
-		
 		System.out.println(vo.setVO());
 		
 		return "itemWriteOk.jsp";

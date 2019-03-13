@@ -23,35 +23,32 @@
 <script src="index.js"></script>
 <script>
 var num = 0;
+var num2 = 0;
 var la1 = 0;
 var la2 = 0;
+var change = "tImg";
 	$(function(){
 		//input-file을 선택할 시 이미지를 나오게 하는곳
-		$("input[type=file]").on("click",function(){
-			if($(this).attr("id")=="thumbnail1"){	
-				num++
-				$("#textbox").append("<img id='"+num+"' class='img-thumbnail col-sm-3'>")
-			}else if($(this).attr("id")=="thumbnail2"){	
-				num++
-				$("#textbox").append("<img id='"+num+"' class='img-thumbnail col-sm-3'>")
-			}else if($(this).attr("id")=="thumbnail3"){	
-				num++
-				$("#textbox").append("<img id='"+num+"' class='img-thumbnail col-sm-3'>")
-			}else if($(this).attr("id")=="image"){
-				num++
-				$("#board").append("<img id='"+num+"' class='img-image col-sm-3'>")
-			}
-		})
+		for(i=0;i<=2;i++){
+			$("#thumbName"+i).click(function(){
+				if(i<=2){
+					change = "tImg"+i;
+					$("#textbox").append("<img id="+change+" class='img-thumbnail col-sm-3'>");
+				}
+				
+			})
+		}
+		
 	//옵션, 색깔 text 추가하는 것--------------
-		 var add1 = 1;
-		 var add2 = 1;
+		 var add1 = 2;
+		 var add2 = 2;
 		 
 		$(".plus").click(function(){
 				if($(this).attr("id")=="optionAdd"){
-					 add1++;
+					 ++add1;
 					$("#add1").append("<input type='text' id='option"+add1+"' name='option"+add1+"' class='col-sm-3' style='margin:0 6px'/>");
 				 }else if($(this).attr("id")=="colorAdd"){
-				 	 add2++;
+				 	 ++add2;
 					 $("#add2").append("<input type='text' id='color"+add2+"' name='color"+add2+"' class='col-sm-2' style='margin:0 6px'/>");
 			 }
 			});
@@ -67,21 +64,102 @@ var la2 = 0;
 			var opt = "";
 			var clt = "";
 		$("#submit").click(function(){	
-			for(i=1;i<=add1;i++){
+			for(i=0;i<=add1+1;i++){
 				if($("#option"+i).val()!=null){
 					opt += $("#option"+i).val()+"|";
 				}
 			}
 			$("#optionTotal").val(opt);
-			for(i=1;i<=add1;i++){
+			for(i=0;i<=add1+1;i++){
 				if($("#color"+i).val()!=null){
 					clt += $("#color"+i).val()+"|";
 				}
 			}
 			$("#colorTotal").val(clt);
 		})
-	//-----------------
+	//--카테고리 split------------
+	$("#op").click(function(){
+		var category = "${vo.category}";
+		var cateSplit = category.split("|");
+		var big = cateSplit[0];
+		var mid = cateSplit[1];
+		var small = cateSplit[2];
+			$("#start").val(big);
+			$(".mid").val(mid);
+			$(".last").val(small);
+			for(i=0;i<=21;i++){
+				if($("#mid"+i).val()==mid){
+					$("#mid"+i).addClass("on");
+				}
+				if($("#small"+i).val()==small){
+					$("#small"+i).addClass("on1");
+				}
+			}
+	//--옵션과 색깔 넣어주는곳-----------------------------
 	})
+		var op = "${vo.option}";
+		var opSplit = op.split("|");
+		for(i=0;i<=opSplit.length-2;i++){
+			if(i<=0){
+				$("#add1").append("<input type='text' id='option"+i+"' name='option"+i+"' placeholder='*ex) 퀸사이즈(+100,000)' class='col-sm-3' value='"+opSplit[i]+"' />");
+			}else{
+				$("#add1").append("<input type='text' id='option"+i+"' name='option"+i+"' class='col-sm-3' value='"+opSplit[i]+"' />");
+			}
+		}
+		var col = "${vo.color}";
+		var colSplit = col.split("|");
+		for(i=0;i<=colSplit.length-2;i++){
+				$("#add2").append("<input type='text' id='color"+i+"' name='color"+i+"' class='col-sm-3' value='"+colSplit[i]+"'/>");
+		}
+	//--저장된 이미지 출력시키는 곳 ------------------------------	
+	var thumbnails = "${vo.thumbnail}";
+	var tnSplit = thumbnails.split("|");
+	var detail = "${vo.detail}";
+	
+	var img = "${vo.detail}"
+		$("#board").append("<img src='/WaBangAdmin/item/itemImg/"+img+"' id='"+num+"'/>");
+		$("#detail").append("<label id='detailName' name='detailName'>"+detail+"<b id='deClose' class='del'>X</b></labal>")
+	
+	for(i=0;i<=tnSplit.length-2;i++){
+		change = "tImg"+i;
+		<%-- $("#textbox").append("<img src='<%=request.getContextPath()%>/item/itemImg/"+tnSplit[i]+"/>'"); --%>
+		if(i==0){
+			$("#thumbnailName").append("<label id='thumbText"+i+"' name='thumbText"+i+"'>"+tnSplit[i]+"<b id='thumbClose"+i+"' class='del'> X</b></label>");
+		}else{
+			$("#thumbnailName").append("<label class='col-sm-1'></label><label id='thumbText"+i+"' name='thumbText"+i+"'>"+tnSplit[i]+"<b id='thumbClose"+i+"' class='del'> X</b></label>");	
+		}
+		$("#textbox").append("<img src='/WaBangAdmin/item/itemImg/"+tnSplit[i]+"' class='img-thumbnail col-sm-3' id='"+change+"'/>");
+	}
+	if(tnSplit.length-2==0){
+		$("#thumbName1").attr("type","file");
+		$("#thumbName2").attr("type","file");
+	}if(tnSplit.length-2==1){
+		$("#thumbName2").attr("type","file");
+	}
+	//썸네일 이름 X표를 누를시	
+	
+		var delThumb = "";
+		$(".del").click(function(){
+			if($(this).attr("id")=="deClose"){
+				$("#image").attr("type","file");
+				$("#detailName").html("");
+				$("#delImage").attr("value",img)
+			}
+			for(i=0;i<=tnSplit.length-1;i++){
+				if($(this).attr("id")=="thumbClose"+i){
+					change = "tImg"+i;
+					//$("#thumbDel").append("<input type='hidden' id='delThumb"+i+"' name='delThumb"+i+"' />")
+					$("#delThumb").attr("value",function(){
+						delThumb += tnSplit[i]+"|";
+						return delThumb;
+					});
+					$("#thumbText"+i).html("");
+					$("#thumbName"+i).attr("type","file");
+				}
+			}
+		})
+	})//$(function(){}
+
 	//파일을 읽어 이미지로 띄워주는 곳 
 	// 사실 잘 모르겠음;;
 	var openFile = function(event) {
@@ -95,6 +173,18 @@ var la2 = 0;
 	    };
 	    reader.readAsDataURL(input.files[0]);
 	  };
+	  
+	var changeFile = function(event) {
+		    var input = event.target;
+		
+		    var reader = new FileReader();
+		    reader.onload = function(){
+		      var dataURL = reader.result;
+		      var output = document.getElementById(change);
+		      output.src = dataURL;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  };  
 	  
 	 //큰카테고리를 선택할때 중간카테고리가 변경되는 것 ----------------
 	  var mid;
@@ -160,55 +250,64 @@ var la2 = 0;
 </script>
 </head>
 <body>
-<div><h2>상품등록</h2></div>
+<div><h2>상품수정</h2></div>
 <div>  <!--전체를 담는 블럭 -->
-	<form method = "post" action="<%=request.getContextPath()%>/item/itemWriteOk.do" enctype="multipart/form-data" class="form-horizontal"> 
+	<form method = "post" action="${ctx}item/itemEditOk.do" enctype="multipart/form-data" class="form-horizontal"> 
 		<div> <!-- 상품 코드  -->
 			<label class="col-sm-1">상품 코드 </label>
-			<input class="col-sm-5" type="text" id="p_Code" name="p_Code"/>
+			<input class="col-sm-5" type="text" id="p_Code" name="p_Code" readonly value="${vo.code}"/>
 		</div>
-		<div> <!-- 카테고리 select들  -->
+		<div id="ca"> <!-- 카테고리 select들  -->
 			<label class="col-sm-1">카테고리</label>
 				<!-- 카테고리들 추가 -->
-				<span id="category" onChange="cateVal()"></span><br/>
+				<span id="category" onChange="cateVal()"></span><input type="button" id="op" value="op" onClick="cateVal()"/>
 					<input type="hidden" id="cateTotal" name="cateTotal"/>
+					
 		</div>
 		<div> <!-- 상품명, 판매금액, 할인률   -->
 			<label class="col-sm-1">상품명</label> 
-				<input type="text" class="col-sm-5" id="p_Title" name="p_Title"/><br/>
+				<input type="text" class="col-sm-5" id="p_Title" name="p_Title" value="${vo.name}"/><br/>
 			<label class="col-sm-1">판매금액 </label>
-				<input type="text" id="p_Pprice" name="p_Price"/>원 
+				<input type="text" id="p_Pprice" name="p_Price" value="${vo.price}"/>원 
 			<label class="col-sm-1">할인률 </label>
-				<input type="text" id="sale" name="sale" value="0" />%	
+				<input type="text" id="sale" name="sale" value="${vo.discount}"/>%	
 		</div>
 		<div> <!-- 옵션, 색깔 -->
 			<label class="col-sm-1">옵션</label>
 				<input type="hidden" id="optionTotal" name="optionTotal"/>
 			<span id="add1">
-				<input type="text" id="option1" name="option1" placeholder="*ex) 퀸사이즈(+100,000)" class="col-sm-3"/>
+				<!-- 옵션input text들 들어오는 곳 -->
 			</span>
 				<input type="button" id="optionAdd" value="+" class="plus"/>
 				<input type="button" id="optiondel" value="-" class="delete"/><br/>
 			<label class="col-sm-1">색깔</label>
 				<input type="hidden" id="colorTotal" name="colorTotal"/>
 			<span id="add2">
-				
-				<input type="text" id="color1" name="color1" class="col-sm-2"/>
+				<!-- 색깔 input text들 들어오는 곳 -->
 			</span>
 				<input type="button" id="colorAdd" value="+" class="plus"/>
 				<input type="button" id="colordel" value="-" class="delete"/><br/>
 		</div>
 		<div>  <!-- 썸네일 이미지,  -->
 			<label class="col-sm-1">썸네일</label>
-				<input type="file" id="thumbnail1" name="thumbnail1" accept='image/*' onchange='openFile(event)'/>
-				<input type="file" id="thumbnail2" name="thumbnail2" accept='image/*' onchange='openFile(event)'/>
-				<input type="file" id="thumbnail3" name="thumbnail3" accept='image/*' onchange='openFile(event)'/>
-				<div id="textbox" name="textbax" contentEditable="false" style="border:1px solid"></div>
+				<input type="hidden" id="thumbName0" name="thumbName0" accept='image/*' onchange='changeFile(event)'/>
+				<input type="hidden" id="thumbName1" name="thumbName1" accept='image/*' onchange='changeFile(event)'/>
+				<input type="hidden" id="thumbName2" name="thumbName2" accept='image/*' onchange='changeFile(event)'/>
+				<span id="thumbnailName"></span>
+				<!-- <span id="thumbDel"></span> -->
+				<input type="hidden" id="delThumb" name="delThumb"/>
+				<div id="textbox" style="border:1px solid">
+					<!-- 저장된 이미지 뽑는곳 -->
+				</div>
 			<label class="col-sm-1">내용</label>
-				<input type="file" id="image" name="image" accept='image/*' onchange='openFile(event)'/>
-				<div id="board" name="board"contentEditable="false" style="border:1px solid"></div>
+				<span id="detail">
+					<input type="hidden" id="image" name="image" accept='image/*' onchange='openFile(event)'/>
+					<input type="hidden" id="delImage" name="delImage" />
+				</span>
+					
+				<div id="board" style="border:1px solid"></div>
 		</div>
-		<input type="submit" id="submit" value="등록" />
+		<input type="submit" id="submit" value="수정" />
 	</form>
 </div>
 </body>

@@ -11,6 +11,6 @@
 <c:if test="${cnt>0}">
 	<script>
 		alert("업로드 성공!!");
-		location.href="<%=request.getContextPath()%>/item/itemWrite.do";
+		location.href="<%=request.getContextPath()%>/item/itemList.do";
 	</script>
 </c:if>
