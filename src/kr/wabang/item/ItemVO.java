@@ -7,11 +7,16 @@ public class ItemVO {
 	private int price;
 	private int discount;
 	private String thumbnail="";
+	private String delThumb;
 	private String option;
 	private String color;
 	private String detail="";
+	private String delDetail;
 	private String regdate;
 	private String newFileName[];
+	private String editFileName[];
+	private String path;
+
 	
 	public String setVO() {
 		String allVO = "code = "+code+"\n";
@@ -20,11 +25,14 @@ public class ItemVO {
 			   allVO += "price = "+price+"\n";
 			   allVO += "discount = "+discount+"\n";
 			   allVO += "thumbnail = "+thumbnail+"\n";
+			   allVO += "delThumb = "+delThumb+"\n";
 			   allVO += "option = "+option+"\n";
 			   allVO += "color = "+color+"\n";
 			   allVO += "detail = "+detail+"\n";
+			   allVO += "delDetail = "+delDetail+"\n";
 			   allVO += "regdate = "+regdate+"\n";
 			   allVO += "newFileName = "+newFileName+"\n";
+			   allVO += "path = "+path+"\n";
 		return allVO;
 	}
 	
@@ -76,17 +84,46 @@ public class ItemVO {
 	public void setNewFileName(String[] newFileName) {
 		this.newFileName = newFileName;
 		//���ǹ����� null�� ���� �����
-	
 		if(newFileName[3] !=null) {
 			this.thumbnail += newFileName[3]+"|";
 		}if(newFileName[2] !=null) {
 			this.thumbnail += newFileName[2]+"|";
 		}if(newFileName[1] !=null) {
-			this.thumbnail += newFileName[1];
+			this.thumbnail += newFileName[1]+"|";
 		}if(newFileName[0] !=null) {
 			this.detail = newFileName[0];
 		}
 	}
+	
+	public String[] getEditFileName() {
+		return editFileName;
+	}
+
+	public void setEditFileName(String[] editFileName) {
+		this.editFileName = editFileName;
+		//
+		if(delDetail!=null && !delDetail.equals("")) {
+			if(editFileName[0] !=null) {
+				System.out.println("삭제 디테일 = "+delDetail);
+				this.detail = editFileName[1];
+				  if(editFileName[1] !=null) {
+					  this.thumbnail += editFileName[3]+"|";
+				  }if(editFileName[2] !=null) {
+					  this.thumbnail += editFileName[2]+"|";
+				  }if(editFileName[3] !=null) {
+					  this.thumbnail +=editFileName[0]+"|"; }
+			}
+		}else if(delDetail==null || delDetail.equals("")) {
+			if(editFileName[0] !=null) {
+				this.thumbnail += editFileName[2]+"|";
+			}if(editFileName[1] !=null) {
+				this.thumbnail += editFileName[1]+"|";
+			}if(editFileName[2] !=null) {
+				this.thumbnail += editFileName[0]+"|"; }				
+			System.out.println("!!!thumbnail = "+thumbnail);		
+		}
+	}
+
 	public String getThumbnail() {
 		return thumbnail;
 	}
@@ -106,6 +143,30 @@ public class ItemVO {
 	}
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public String getDelThumb() {
+		return delThumb;
+	}
+
+	public void setDelThumb(String delThumb) {
+		this.delThumb = delThumb;
+	}
+
+	public String getDelDetail() {
+		return delDetail;
+	}
+
+	public void setDelDetail(String delDetail) {
+		this.delDetail = delDetail;
 	}
 
 	

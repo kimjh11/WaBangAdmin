@@ -40,8 +40,6 @@ $(function(){
 				
 			}
 		}
-
-		
 		$("#category").append(cateTag);
 		$("#category").append(catemid);
 		//$("#category").append(totalmid);

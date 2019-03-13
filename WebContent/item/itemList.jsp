@@ -30,7 +30,6 @@
 			});
 		});
 		$("tr").click(function(){
-			alert($(this).find('td:eq(0)').text());
 			location.href="${ctx}item/itemView.do?code="+$(this).find('td:eq(0)').text();
 		})
 	});
