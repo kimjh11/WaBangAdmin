@@ -13,18 +13,18 @@ public class CommandDeliveryOk implements CommandService {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//¹è¼Û¿Ï·á
+		//ï¿½ï¿½Û¿Ï·ï¿½
 		ListDAO dao = new ListDAO();
 		OrderListVO vo = new OrderListVO();
 		
 		String i_code = req.getParameter("i_code");
 		String o_num = req.getParameter("o_num");
 		String m_id = req.getParameter("m_id");
-		String deliveryOk = "¹è¼Û¿Ï·á";
-		//°ªµé¾î¿Ô´ÂÁö È®ÀÎ
-		System.out.println("°ªµé¾î¿Ô´ÂÁö È®ÀÎ-------");
-		System.out.println("¾ÆÀÌµð="+m_id);
-		System.out.println("°áÁ¦»óÅÂ="+o_num);
+		String deliveryOk = "ë°°ì†¡ì™„ë£Œ";
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ È®ï¿½ï¿½-------");
+		System.out.println("ï¿½ï¿½ï¿½Ìµï¿½="+m_id);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½="+o_num);
 		System.out.println("i_code="+i_code);
 		
 		int cnt = dao.updateDelivery(deliveryOk,i_code, o_num, m_id);
